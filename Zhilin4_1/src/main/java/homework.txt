@@ -1,0 +1,59 @@
+На все задания написать Unit-тесты
+1.
+В методах printFieldsNames, printMethodsNames вывести имена полей и методов родительских классов
+2.
+Предположим, что в объекте класса SimpleData в поле objectData может лежать другой объект SimpleData
+Доработать метод copy для обеспечения глубокого копирования
+3.
+Доработать метод copy для обеспечения глубокого копирования классов содержащих массивы, коллекции и map'ы (WithArrayData, WithCollectionData)
+4*.
+Реализовать метод сериализации объекта в строку (файл). Формат следующий:
+Если поле объекта - примитивный тип или строка:
+имя_поля:тип_поля = значение_поля;
+Если поле является массивом, коллекцией:
+имя_поля:тип_элемента = первый_элемент, второй_элемент, ... n-й_элемент;
+Если поле является map:
+имя_поля:типы_ключей_и_значений = {первый_ключ, первое_значение;}, {второй_ключ, второе_значение;}, ... {n-й_ключ, n-ое_значение;};
+Пример:
+:com.vnfhome.reflection.WithCollectionData =
+{
+    intData:int = 7;
+    byteData:byte = 6;
+    stringData:java.lang.String = привет;
+    objectData:com.vnfhome.reflection.SimpleData =
+    {
+        intData:int = 4;
+        byteData:byte = 7;
+        stringData:java.lang.String = прощай;
+    };
+    stringArray:java.lang.String =
+    береза,
+    ель,
+    дуб;
+    listString:java.util.List<java.lang.String> =
+    окунь,
+    щука,
+    лещ;
+    mapStringSimpleData:java.util.Map<java.lang.String, com.vnfhome.reflection.SimpleData> =
+    {
+        one,
+        {
+            byteData:byte = 89;
+            intData:int = 415;
+            stringData:java.lang.String = кирпич и бетон;
+        };
+    },
+        two,
+        {
+            intData:int = -4463463;
+            byteData:byte = 54;
+            stringData:java.lang.String = забор;
+        };
+    },
+    {
+        five,
+        ;
+    };
+};
+5**.
+Реализовать метод десериализации строки (формат в задании 4) в объект
